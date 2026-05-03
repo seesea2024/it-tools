@@ -111,6 +111,15 @@ export default defineConfig({
     exclude: [...configDefaults.exclude, '**/*.e2e.spec.ts'],
   },
   build: {
-    target: 'esnext',
+    target: 'es2020',
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['vue', 'vue-router', 'pinia'],
+          ui: ['naive-ui'],
+        },
+      },
+    },
   },
 });
